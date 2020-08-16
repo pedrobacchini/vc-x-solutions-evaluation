@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 @Tag("unit")
 class CompanyResourceTest extends TestHelper {
 
-    ArgumentCaptor<Company> captor = ArgumentCaptor.forClass(Company.class);
+    final ArgumentCaptor<Company> captor = ArgumentCaptor.forClass(Company.class);
 
     @Test
     void GIVEN_ValidCompany_MUST_ParseAndCallService() throws Exception {

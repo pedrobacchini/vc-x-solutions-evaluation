@@ -6,17 +6,19 @@ import com.github.pedrobacchini.helper.TestHelper;
 import com.github.pedrobacchini.repository.CompanyRepository;
 import com.github.pedrobacchini.util.GenerateCpfCnpj;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+@Tag("unit")
 class CompanyServiceImplTest extends TestHelper {
 
     CompanyService companyService;
     CompanyRepository companyRepository;
-    ArgumentCaptor<Company> captor = ArgumentCaptor.forClass(Company.class);
+    final ArgumentCaptor<Company> captor = ArgumentCaptor.forClass(Company.class);
 
     @BeforeEach
     void setup() {
