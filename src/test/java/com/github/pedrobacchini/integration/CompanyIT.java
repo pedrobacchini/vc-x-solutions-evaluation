@@ -1,4 +1,4 @@
-package com.github.pedrobacchini.resource;
+package com.github.pedrobacchini.integration;
 
 import com.github.pedrobacchini.enumerated.CompanyType;
 import com.github.pedrobacchini.helper.IntegrationHelper;
