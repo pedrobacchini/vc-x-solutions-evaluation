@@ -1,6 +1,7 @@
 package com.github.pedrobacchini.entity;
 
 import com.github.pedrobacchini.audit.Audit;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,4 +46,14 @@ public class Invoice {
 
     @Embedded
     private final Audit audit = new Audit();
+
+    @Builder
+    private Invoice(Long id, Long number, LocalDate date, BigDecimal value, Company taker, Company provider) {
+        this.id = id;
+        this.number = number;
+        this.date = date;
+        this.value = value;
+        this.taker = taker;
+        this.provider = provider;
+    }
 }

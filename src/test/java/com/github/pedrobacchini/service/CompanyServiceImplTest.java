@@ -37,15 +37,21 @@ class CompanyServiceImplTest extends TestHelper {
         var name = tradeName + " SA";
         var documentIdentifier = GenerateCpfCnpj.cnpj(false);
         var type = CompanyType.random();
+        Company expect = Company.builder()
+                .tradeName(tradeName)
+                .name(name)
+                .documentIdentifier(documentIdentifier)
+                .type(type)
+                .build();
 
-        companyService.create(new Company(tradeName, name, documentIdentifier, type));
+        companyService.create(expect);
 
         verify(companyRepository, times(1)).save(captor.capture());
-        Company company = captor.getValue();
-        assertThat(company).isNotNull();
-        assertThat(company.getTradeName()).isEqualTo(tradeName);
-        assertThat(company.getName()).isEqualTo(name);
-        assertThat(company.getDocumentIdentifier()).isEqualTo(documentIdentifier);
-        assertThat(company.getType()).isEqualTo(type);
+        Company actual = captor.getValue();
+        assertThat(actual).isNotNull();
+        assertThat(actual.getTradeName()).isEqualTo(tradeName);
+        assertThat(actual.getName()).isEqualTo(name);
+        assertThat(actual.getDocumentIdentifier()).isEqualTo(documentIdentifier);
+        assertThat(actual.getType()).isEqualTo(type);
     }
 }

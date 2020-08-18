@@ -28,7 +28,12 @@ class CompanyResourceTest extends TestHelper {
         var documentIdentifier = GenerateCpfCnpj.cnpj(false);
         var type = CompanyType.random();
         var companyDTO = new CompanyDTO(tradeName, name, documentIdentifier, type);
-        Company expect = new Company(tradeName, name, documentIdentifier, type);
+        Company expect = Company.builder()
+                .tradeName(tradeName)
+                .name(name)
+                .documentIdentifier(documentIdentifier)
+                .type(type)
+                .build();
         var companyMapper = mock(CompanyMapper.class);
         when(companyMapper.fromDTO(companyDTO)).thenReturn(expect);
         var companyService = mock(CompanyServiceImpl.class);

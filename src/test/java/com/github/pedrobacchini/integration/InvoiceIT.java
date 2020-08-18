@@ -30,13 +30,13 @@ class InvoiceIT extends IntegrationHelper {
     void GIVEN_ValidPayload_MUST_ReturnCreated() throws Exception {
 
         // given
-        Long number = faker.number().randomNumber();
-        LocalDate date = faker.date().future(1, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        BigDecimal value = BigDecimal.valueOf(faker.number().randomDouble(2, 1L, 10000L));
-        Long takerId = 1L;
-        Long providerId = 2L;
+        var number = faker.number().randomNumber();
+        var date = faker.date().future(1, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        var value = BigDecimal.valueOf(faker.number().randomDouble(2, 1L, 10000L));
+        var takerId = 1L;
+        var providerId = 2L;
 
-        Map<String, Object> expected = new HashMap<>();
+        var expected = new HashMap<>();
         expected.put("number", number);
         expected.put("date", date.toString());
         expected.put("value", value);

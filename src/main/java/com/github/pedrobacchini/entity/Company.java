@@ -2,6 +2,7 @@ package com.github.pedrobacchini.entity;
 
 import com.github.pedrobacchini.audit.Audit;
 import com.github.pedrobacchini.enumerated.CompanyType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,7 +40,9 @@ public class Company {
     @Embedded
     private final Audit audit = new Audit();
 
-    public Company(String tradeName, String name, String documentIdentifier, CompanyType type) {
+    @Builder
+    private Company(Long id, String tradeName, String name, String documentIdentifier, CompanyType type) {
+        this.id = id;
         this.tradeName = tradeName;
         this.name = name;
         this.documentIdentifier = documentIdentifier;
