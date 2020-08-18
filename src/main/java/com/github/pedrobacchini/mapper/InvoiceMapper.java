@@ -14,7 +14,7 @@ public interface InvoiceMapper {
 
     @Mapping(source = "takerId", target = "taker", qualifiedByName = "findCompanyById")
     @Mapping(source = "providerId", target = "provider", qualifiedByName = "findCompanyById")
-    Invoice fromDTO(InvoiceDTO invoiceDTO, @Context CompanyService companyService);
+    Invoice toEntity(InvoiceDTO invoiceDTO, @Context CompanyService companyService);
 
     @Named("findCompanyById")
     default Company findCompanyById(Long companyId, @Context CompanyService companyService) {

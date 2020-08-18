@@ -7,5 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface CompanyMapper {
 
-    Company fromDTO(CompanyDTO companyDTO);
+    Company toEntity(CompanyDTO companyDTO);
 }

@@ -28,7 +28,7 @@ public class InvoiceResource {
     @PostMapping(path = ENDPOINT_PATH)
     public ResponseEntity<Void> create(@Valid @RequestBody InvoiceDTO invoiceDTO) throws URISyntaxException {
 
-        Invoice invoice = invoiceService.create(invoiceMapper.fromDTO(invoiceDTO, companyService));
+        Invoice invoice = invoiceService.create(invoiceMapper.toEntity(invoiceDTO, companyService));
 
         return ResponseEntity
                 .created(new URI(String.format("%s/%s", ENDPOINT_PATH, invoice.getId())))
