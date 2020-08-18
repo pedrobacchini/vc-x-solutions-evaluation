@@ -2,8 +2,6 @@ package com.github.pedrobacchini.resource;
 
 import com.github.pedrobacchini.dto.InvoiceDTO;
 import com.github.pedrobacchini.entity.Invoice;
-import com.github.pedrobacchini.mapper.InvoiceMapper;
-import com.github.pedrobacchini.service.CompanyService;
 import com.github.pedrobacchini.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +20,11 @@ public class InvoiceResource {
     public static final String ENDPOINT_PATH = "/invoices";
 
     private final InvoiceService invoiceService;
-    private final CompanyService companyService;
-    private final InvoiceMapper invoiceMapper;
 
     @PostMapping(path = ENDPOINT_PATH)
     public ResponseEntity<Void> create(@Valid @RequestBody InvoiceDTO invoiceDTO) throws URISyntaxException {
 
-        Invoice invoice = invoiceService.create(invoiceMapper.toEntity(invoiceDTO, companyService));
+        Invoice invoice = invoiceService.create(invoiceDTO);
 
         return ResponseEntity
                 .created(new URI(String.format("%s/%s", ENDPOINT_PATH, invoice.getId())))
