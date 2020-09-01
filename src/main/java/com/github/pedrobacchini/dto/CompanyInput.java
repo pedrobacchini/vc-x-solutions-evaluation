@@ -1,23 +1,26 @@
 package com.github.pedrobacchini.dto;
 
 import com.github.pedrobacchini.enumerated.CompanyType;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class CompanyInput {
 
-    private final String tradeName;
+    String tradeName;
 
     @NotNull
-    private final String name;
+    String name;
 
     @NotNull
-    private final String documentIdentifier;
+    String documentIdentifier;
 
-    private final CompanyType type;
+    CompanyType type;
 }
 
