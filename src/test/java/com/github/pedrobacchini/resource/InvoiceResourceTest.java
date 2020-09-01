@@ -1,6 +1,6 @@
 package com.github.pedrobacchini.resource;
 
-import com.github.pedrobacchini.dto.InvoiceDTO;
+import com.github.pedrobacchini.dto.InvoiceInput;
 import com.github.pedrobacchini.entity.Company;
 import com.github.pedrobacchini.entity.Invoice;
 import com.github.pedrobacchini.helper.TestHelper;
@@ -31,7 +31,7 @@ class InvoiceResourceTest extends TestHelper {
         var value = BigDecimal.valueOf(faker.number().randomDouble(2, 1L, 10000L));
         var takerId = 1L;
         var providerId = 2L;
-        var invoiceDTO = new InvoiceDTO(number, date, value, takerId, providerId);
+        var invoiceInput = new InvoiceInput(number, date, value, takerId, providerId);
         var expect = Invoice.builder()
                 .id(id)
                 .number(number)
@@ -42,14 +42,14 @@ class InvoiceResourceTest extends TestHelper {
                 .build();
 
         var invoiceService = mock(InvoiceServiceImpl.class);
-        when(invoiceService.create(invoiceDTO)).thenReturn(expect);
+        when(invoiceService.create(invoiceInput)).thenReturn(expect);
 
         // when
         InvoiceResource invoiceResource = new InvoiceResource(invoiceService);
-        ResponseEntity<Void> responseEntity = invoiceResource.create(invoiceDTO);
+        ResponseEntity<Void> responseEntity = invoiceResource.create(invoiceInput);
 
         // then
-        verify(invoiceService, times(1)).create(invoiceDTO);
+        verify(invoiceService, times(1)).create(invoiceInput);
         assertThat(responseEntity.getHeaders().getLocation()).isEqualTo(new URI(String.format("%s/%s", ENDPOINT_PATH, id)));
     }
 }

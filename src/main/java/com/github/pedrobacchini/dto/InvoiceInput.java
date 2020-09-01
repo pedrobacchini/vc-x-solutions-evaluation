@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-public class InvoiceDTO {
+public class InvoiceInput {
 
     private Long number;
     private LocalDate date;

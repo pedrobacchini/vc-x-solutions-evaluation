@@ -1,6 +1,6 @@
 package com.github.pedrobacchini.resource;
 
-import com.github.pedrobacchini.dto.CompanyDTO;
+import com.github.pedrobacchini.dto.CompanyInput;
 import com.github.pedrobacchini.entity.Company;
 import com.github.pedrobacchini.service.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +22,9 @@ public class CompanyResource {
     private final CompanyService companyService;
 
     @PostMapping(path = ENDPOINT_PATH)
-    public ResponseEntity<Void> create(@Valid @RequestBody CompanyDTO companyDTO) throws URISyntaxException {
+    public ResponseEntity<Void> create(@Valid @RequestBody CompanyInput companyInput) throws URISyntaxException {
 
-        Company company = companyService.create(companyDTO);
+        Company company = companyService.create(companyInput);
 
         return ResponseEntity
                 .created(new URI(String.format("%s/%s", ENDPOINT_PATH, company.getId())))

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
-public class CompanyDTO {
+public class CompanyInput {
 
     private final String tradeName;
 

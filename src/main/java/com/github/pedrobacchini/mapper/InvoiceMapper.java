@@ -1,6 +1,6 @@
 package com.github.pedrobacchini.mapper;
 
-import com.github.pedrobacchini.dto.InvoiceDTO;
+import com.github.pedrobacchini.dto.InvoiceInput;
 import com.github.pedrobacchini.entity.Company;
 import com.github.pedrobacchini.entity.Invoice;
 import com.github.pedrobacchini.service.CompanyService;
@@ -14,7 +14,7 @@ public interface InvoiceMapper {
 
     @Mapping(source = "takerId", target = "taker", qualifiedByName = "findCompanyById")
     @Mapping(source = "providerId", target = "provider", qualifiedByName = "findCompanyById")
-    Invoice toEntity(InvoiceDTO invoiceDTO, @Context CompanyService companyService);
+    Invoice toEntity(InvoiceInput invoiceInput, @Context CompanyService companyService);
 
     @Named("findCompanyById")
     default Company findCompanyById(Long companyId, @Context CompanyService companyService) {

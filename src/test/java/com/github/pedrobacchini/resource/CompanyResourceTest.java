@@ -1,6 +1,6 @@
 package com.github.pedrobacchini.resource;
 
-import com.github.pedrobacchini.dto.CompanyDTO;
+import com.github.pedrobacchini.dto.CompanyInput;
 import com.github.pedrobacchini.entity.Company;
 import com.github.pedrobacchini.enumerated.CompanyType;
 import com.github.pedrobacchini.helper.TestHelper;
@@ -28,7 +28,7 @@ class CompanyResourceTest extends TestHelper {
         var name = tradeName + " SA";
         var documentIdentifier = GenerateCpfCnpj.cnpj(false);
         var type = CompanyType.random();
-        var companyDTO = new CompanyDTO(tradeName, name, documentIdentifier, type);
+        var companyInput = new CompanyInput(tradeName, name, documentIdentifier, type);
         Company expect = Company.builder()
                 .id(id)
                 .tradeName(tradeName)
@@ -38,14 +38,14 @@ class CompanyResourceTest extends TestHelper {
                 .build();
 
         var companyService = mock(CompanyServiceImpl.class);
-        when(companyService.create(companyDTO)).thenReturn(expect);
+        when(companyService.create(companyInput)).thenReturn(expect);
 
         // when
         CompanyResource companyResource = new CompanyResource(companyService);
-        ResponseEntity<Void> responseEntity = companyResource.create(companyDTO);
+        ResponseEntity<Void> responseEntity = companyResource.create(companyInput);
 
         // then
-        verify(companyService, times(1)).create(companyDTO);
+        verify(companyService, times(1)).create(companyInput);
         assertThat(responseEntity.getHeaders().getLocation()).isEqualTo(new URI(String.format("%s/%s", ENDPOINT_PATH, id)));
     }
 }

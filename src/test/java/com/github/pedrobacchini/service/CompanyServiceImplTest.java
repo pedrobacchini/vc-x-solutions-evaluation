@@ -1,6 +1,6 @@
 package com.github.pedrobacchini.service;
 
-import com.github.pedrobacchini.dto.CompanyDTO;
+import com.github.pedrobacchini.dto.CompanyInput;
 import com.github.pedrobacchini.entity.Company;
 import com.github.pedrobacchini.enumerated.CompanyType;
 import com.github.pedrobacchini.helper.TestHelper;
@@ -41,18 +41,18 @@ class CompanyServiceImplTest extends TestHelper {
         var name = tradeName + " SA";
         var documentIdentifier = GenerateCpfCnpj.cnpj(false);
         var type = CompanyType.random();
-        var companyDTO = new CompanyDTO(tradeName, name, documentIdentifier, type);
+        var companyInput = new CompanyInput(tradeName, name, documentIdentifier, type);
         Company expect = Company.builder()
                 .tradeName(tradeName)
                 .name(name)
                 .documentIdentifier(documentIdentifier)
                 .type(type)
                 .build();
-        when(companyMapper.toEntity(companyDTO)).thenReturn(expect);
+        when(companyMapper.toEntity(companyInput)).thenReturn(expect);
 
-        companyService.create(companyDTO);
+        companyService.create(companyInput);
 
-        verify(companyMapper, times(1)).toEntity(companyDTO);
+        verify(companyMapper, times(1)).toEntity(companyInput);
         verify(companyRepository, times(1)).save(captor.capture());
         Company actual = captor.getValue();
         assertThat(actual).isNotNull();
